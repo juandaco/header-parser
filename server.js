@@ -10,11 +10,14 @@ app.get('/', (req, res) => {
 
 // Some String is passed in the URL
 app.get('/api/whoami', (req, res) => {
+	let ipaddress = req.ip || req.ips;
+	let language = req.headers['accept-language'];
+  let	software = req.headers['user-agent'];
 
   let info = {
-  	ipaddress: req.ip,
-  	language: req.headers['accept-language'],
-  	software: req.headers['user-agent'],
+  	ipaddress,
+  	langauage,
+  	software,
   };
 
   res.send(JSON.stringify(info));
