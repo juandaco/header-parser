@@ -10,8 +10,9 @@ app.get('/', (req, res) => {
 
 // Some String is passed in the URL
 app.get('/api/whoami', (req, res) => {
+
   let info = {
-  	ipaddress: req.headers.host,
+  	ipaddress: req.ip,
   	language: req.headers['accept-language'],
   	software: req.headers['user-agent'],
   };
@@ -21,12 +22,3 @@ app.get('/api/whoami', (req, res) => {
 
 app.listen(port);
 
-
-/*
-"ipaddress":
-"186.86.1.245",
-"language":
-"en-us",
-"software":
-"Macintosh; Intel Mac OS X 10_12_3"
-}*/
