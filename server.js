@@ -9,15 +9,9 @@ app.get('/', (req, res) => {
   res.send('Please add at the end of the URL address "/api/whoami/"');
 });
 
-app.enable('trust proxy');
-
 // Some String is passed in the URL
 app.get('/api/whoami', (req, res) => {
-	// Header best practices
-
-
 	let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-	// ipaddress = ipaddress.slice(7);
 	let language = req.headers['accept-language'];
 	language = language.slice(0, 5);
 	let software = req.headers['user-agent'];
@@ -32,7 +26,4 @@ app.get('/api/whoami', (req, res) => {
   res.json(info);
 });
 
-app.listen(port, err => {
-	if (err) throw err;
-	console.log(`Running server on port ${port}`);
-});
+app.listen(port);
