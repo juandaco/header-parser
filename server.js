@@ -23,7 +23,7 @@ app.get('/api/whoami', (req, res) => {
   const info = {
   	ipaddress,
   	language,
-  	software: req.headers['user-agent'],
+  	software,
   };
 
   res.json(info);
