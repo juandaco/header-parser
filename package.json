@@ -1,0 +1,23 @@
+{
+  "name": "header-parser",
+  "version": "1.0.0",
+  "description": "Header Parser Micro Service API Project for FreeCodeCamp",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juandaco/header-parser.git"
+  },
+  "author": "Juan D Acosta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juandaco/header-parser/issues"
+  },
+  "homepage": "https://github.com/juandaco/header-parser#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
