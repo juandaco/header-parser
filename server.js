@@ -10,16 +10,23 @@ app.get('/', (req, res) => {
 
 // Some String is passed in the URL
 app.get('/api/whoami', (req, res) => {
+	// Header best practices
+
+
 	let ipaddress = req.ip || req.ips;
 	ipaddress = ipaddress.slice(7);
+	let language = req.headers['accept-language'];
+	language = language.slice(0, 5);
+	let software = req.headers['user-agent'];
+	software = software.slice(software.indexOf('('), software.indexOf(')'));
 
-  let info = {
+  const info = {
   	ipaddress,
-  	language: req.headers['accept-language'],
+  	language,
   	software: req.headers['user-agent'],
   };
 
-  res.send(JSON.stringify(info));
+  res.json(info);
 });
 
 app.listen(port);
