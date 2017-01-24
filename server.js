@@ -11,17 +11,15 @@ app.get('/', (req, res) => {
 // Some String is passed in the URL
 app.get('/api/whoami', (req, res) => {
 	let ipaddress = req.ip || req.ips;
-	let language = req.headers['accept-language'];
-  let	software = req.headers['user-agent'];
+	ipaddress = ipaddress.slice(7);
 
   let info = {
   	ipaddress,
-  	langauage,
-  	software,
+  	language: req.headers['accept-language'],
+  	software: req.headers['user-agent'],
   };
 
   res.send(JSON.stringify(info));
 });
 
 app.listen(port);
-
