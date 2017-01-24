@@ -13,12 +13,12 @@ app.get('/api/whoami', (req, res) => {
 	// Header best practices
 
 
-	let ipaddress = req.ip || req.ips;
+	let ipaddress = request.connection.remoteAddress;
 	ipaddress = ipaddress.slice(7);
 	let language = req.headers['accept-language'];
 	language = language.slice(0, 5);
 	let software = req.headers['user-agent'];
-	software = software.slice(software.indexOf('('), software.indexOf(')'));
+	software = software.slice(software.indexOf('(') + 1, software.indexOf(')'));
 
   const info = {
   	ipaddress,
