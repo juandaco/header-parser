@@ -1,3 +1,4 @@
+const http = require('http');
 const express = require('express');
 
 const app = express();
@@ -8,20 +9,22 @@ app.get('/', (req, res) => {
   res.send('Please add at the end of the URL address "/api/whoami/"');
 });
 
+app.enable('trust proxy');
+
 // Some String is passed in the URL
 app.get('/api/whoami', (req, res) => {
 	// Header best practices
 
 
-	let ipaddress = req.ip || req.ips;
-	ipaddress = ipaddress.slice(7);
+	let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+	// ipaddress = ipaddress.slice(7);
 	let language = req.headers['accept-language'];
 	language = language.slice(0, 5);
 	let software = req.headers['user-agent'];
 	software = software.slice(software.indexOf('(') + 1, software.indexOf(')'));
 
   const info = {
-  	ipaddress,
+  	ipaddress: ip,
   	language,
   	software,
   };
@@ -29,4 +32,7 @@ app.get('/api/whoami', (req, res) => {
   res.json(info);
 });
 
-app.listen(port);
+app.listen(port, err => {
+	if (err) throw err;
+	console.log(`Running server on port ${port}`);
+});
